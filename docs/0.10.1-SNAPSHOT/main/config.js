@@ -220,8 +220,8 @@ function createRoutes(){
         {
             path: '/config/02_config-sources',
             meta: {
-                h1: 'Loading Configuration: Config Sources and Parsers',
-                title: 'Loading Configuration: Config Sources and Parsers',
+                h1: '加载配置：配置源和解析器',
+                title: '加载配置：配置源和解析器',
                 description: 'A summary of Helidon config sources and parsers',
                 keywords: 'Helidon, config, sources, parsers',
                 customLayout: null,
@@ -475,7 +475,7 @@ function createNav(){
             group: '/config',
             items: [
                 { href: '/config/01_introduction', title: '组件配置' },
-                { href: '/config/02_config-sources', title: 'Loading Configuration: Config Sources and Parsers' },
+                { href: '/config/02_config-sources', title: '加载配置：配置源和解析器' },
                 { href: '/config/03_hierarchical-features', title: 'Hierarchical Features' },
                 { href: '/config/04_property-mapping', title: 'Property Mapping' },
                 { href: '/config/05_mutability-support', title: 'Mutability Support' },

@@ -8,9 +8,8 @@
 <v-card-text>
 <dl>
 <dt slot=title>组件配置</dt>
-<dd slot="desc"><p>The config component provides a Java API to load and process
-configuration properties in key/value form into a <code>Config</code> object which the
-application can use to retrieve config data.</p>
+<dd slot="desc"><p><code>Config</code> 组件提供了一个Java API，用于将键/值形式的配置属性加载和处理到Config对象中，
+应用程序可以使用该对象来检索配置数据。</p>
 </dd>
 </dl>
 </v-card-text>
@@ -20,14 +19,13 @@ application can use to retrieve config data.</p>
 </v-flex>
 </v-layout>
 
-<h2 >Getting Started</h2>
+<h2 >入门</h2>
 <div class="section">
 
-<h3 >Introducing the Config System</h3>
+<h3 >介绍配置系统</h3>
 <div class="section">
-<p>A brief overview of the config system helps clarify its different parts
-and how they work together. Most applications will typically deal with more
-than one of these parts.</p>
+<p>配置系统的简要概述有助于阐明其不同部分以及它们如何协同工作。
+大多数应用程序通常会处理这些部分中的多个部分。</p>
 
 
 
@@ -37,85 +35,74 @@ than one of these parts.</p>
 </v-card-text>
 </v-card>
 
-<p>The system reads configuration from a <em>config source</em>, a physical location (such as a file,
-a URL, or a <code>String</code>) which holds config data. Each config source works with a
-<em>config parser</em> which translates a particular text format (for example, Java properties or YAML)
-into an in-memory tree which represents the configuration&#8217;s structure and values.
-An optional <em>polling strategy</em> detects and publishes changes to the underlying config source
-so the config source itself or your application can respond.</p>
+<p>系统从配置源，包含配置数据的物理位置（例如文件、URL或字符串）读取配置。
+每个配置源都使用配置解析器，它将特定的文本格式（例如，Java属性或YAML）转换为内存中的树，该树表示配置的结构和值
+一个可选的轮询策略检测并发布对底层配置源的更改，以便配置源本身或您的应用程序可以响应。</p>
 
-<p>Your application uses the <code>Config</code>
-object which results from building that in-memory tree to retrieve config data.
-The app can navigate explicitly among the nodes in the tree and fetch a node&#8217;s
-value</p>
+<p>您的应用程序使用 <code>Config</code>  对象，该对象是通过构建内存中的树来检索配置数据的结果。
+应用程序可以在树中的节点之间显式获取节点的值。</p>
 
 <markup
 lang="java"
 
 >Optional&lt;String&gt; pageSize = Config.get("web").get("page-size").value();</markup>
 
-<p>or it can address a node in the tree using the config key&#8217;s dotted name</p>
+<p>或者它可以使用配置键的点名称来寻址树中的节点</p>
 
 <markup
 lang="java"
 
 >int pageSize = Config.get("web.page-size").asInt();</markup>
 
-<p>As part of
-retrieving a value from a node, the config system applies <em>config filters</em>
-which can change what values are returned for selected keys.</p>
+<p>作为从节点检索值的一部分，配置系统应用配置过滤器，该过滤器可以更改为所选键返回的值。</p>
 
-<p>The <code>Config</code> object lets your application retrieve config data as:</p>
+<p><code>Config</code> 对象允许您的应用程序检索配置数据：</p>
 
 <ul class="ulist">
 <li>
-<p>an <code>Optional&lt;String&gt;</code> value <em>from a single node</em>,</p>
+<p>从单节点获取  <code>Optional&lt;String&gt;</code> 值,</p>
 
 </li>
 <li>
-<p>the <code>String</code> value <em>from a single node</em> interpreted as a basic Java type
-(primitive or simple object) already known to the config system (such as
-a <code>boolean</code> or a <code>Double</code>), or</p>
+<p>来自单个节点的String值被解释为配置系统已知的基本Java类型（原始或简单对象）（例如布尔值或Double）, 或者</p>
 
 </li>
 <li>
-<p>a complex Java type <em>from a subtree</em> of the config tree.</p>
-<p>The config system automatically knows how to return <code>List</code> and <code>Map</code> complex types,
-and you can provide <em>config mappers</em> to convert a config subtree to whatever
-Java types your application needs.</p>
+<p>来自配置树的子树的复杂Java类型。</p>
+<p>配置系统自动知道如何返回 <code>List</code> 和 <code>Map</code> 复杂类型，
+并且您可以提供配置映射器以将配置子树转换为您的应用程序所需的任何Java类型。</p>
 
 </li>
 </ul>
 </div>
 
-<h3 >Your First Config Application</h3>
+<h3 >您的第一个配置应用程序</h3>
 <div class="section">
-<p>An easy way to start with the <a id=""
+<p>从 <a id=""
 title=""
 target="_blank"
-href="./apidocs/index.html?io/helidon/config/Config.html">Config</a> API
-is to follow these four steps:</p>
+href="./apidocs/index.html?io/helidon/config/Config.html">Config</a> API开始的简单方法是遵循以下四个步骤：</p>
 
 <ol style="margin-left: 15px;">
 <li>
-<router-link to="#maven-coords" @click.native="this.scrollFix('#maven-coords')">add config-related dependencies to your <code>pom.xml</code></router-link>
+<router-link to="#maven-coords" @click.native="this.scrollFix('#maven-coords')">将与配置相关的依赖项添加到 <code>pom.xml</code> 中</router-link>
 
 </li>
 <li>
-<router-link to="#update-module-info" @click.native="this.scrollFix('#update-module-info')">revise your <code>module-info.java</code> to refer to config (if you are using Java 9)</router-link>
+<router-link to="#update-module-info" @click.native="this.scrollFix('#update-module-info')">修改你的 <code>module-info.java</code> 以引用config（如果你使用的是Java 9）</router-link>
 
 </li>
 <li>
-<router-link to="#create-simple-config-props" @click.native="this.scrollFix('#create-simple-config-props')">create a simple config properties file</router-link>
+<router-link to="#create-simple-config-props" @click.native="this.scrollFix('#create-simple-config-props')">创建一个简单的配置属性文件</router-link>
 
 </li>
 <li>
-<router-link to="#Config-Basics-DefaultConfig" @click.native="this.scrollFix('#Config-Basics-DefaultConfig')">retrieve and use the default <code>Config</code> from your app</router-link>
+<router-link to="#Config-Basics-DefaultConfig" @click.native="this.scrollFix('#Config-Basics-DefaultConfig')">从您的应用中检索并使用默认配置</router-link>
 
 </li>
 </ol>
 
-<h4 >Add Maven Dependency on Config</h4>
+<h4 >在配置上添加Maven依赖项</h4>
 <div class="section">
 <markup
 lang="xml"
@@ -130,20 +117,20 @@ title="Config Dependency in <code>pom.xml</code>"
 
 </div>
 
-<h4 >Update <code>module-info.java</code></h4>
+<h4 >更新 <code>module-info.java</code></h4>
 <div class="section">
-<p>If you are using Java 9 then create or update the <code>module-info.java</code> file for your application:</p>
+<p>如果您使用的是Java 9，则为您的应用程序创建或更新 <code>module-info.java</code> 文件：</p>
 
 <markup
 lang="java"
-title="Config Dependency in <code>module-info.java</code>"
+title="创建简单的配置属性文件"
 >module myModule {
     requires io.helidon.config;
 }</markup>
 
 </div>
 
-<h4 >Create simple Config Properties File</h4>
+<h4 >创建简单的配置属性文件</h4>
 <div class="section">
 <markup
 
@@ -161,7 +148,7 @@ java.home=homeFromProps # will be ignored</markup>
 
 </div>
 
-<h4 >Write Code using the Default Config</h4>
+<h4 >使用默认配置编写代码</h4>
 <div class="section">
 <markup
 lang="java"
@@ -186,12 +173,11 @@ title="Create and Use Default <code>Config</code> from Java"
                 config.get("java.home").asString()));</markup>
 
 <ul class="colist">
-<li data-value="1">Import <code>Config</code>.</li>
-<li data-value="2">Create the root of the <code>Config</code> tree from the default sources.</li>
-<li data-value="3">Retrieve various values by their dotted names and decode them as the appropriate
-Java types.</li>
+<li data-value="1">导入 <code>Config</code></li>
+<li data-value="2">从默认源创建配置树的根</li>
+<li data-value="3">通过点名称检索各种值，并将它们解码为适当的Java类型。</li>
 </ul>
-<p>When you build and run your project, the output will look like this:</p>
+<p>在构建和运行项目时，输出将如下所示：</p>
 
 <markup
 
@@ -205,43 +191,39 @@ origin is props
 java.home is /Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home</markup>
 
 
-<h5 >Config Sources for the Default Config</h5>
+<h5 >配置默认配置的源</h5>
 <div class="section">
-<p>The default config uses the following config sources, listed here from most to least important:</p>
+<p>默认配置使用以下配置源，此处列出从最重要到次要：</p>
 
 <ol style="margin-left: 15px;">
 <li>
-Java system properties
+Java系统属性
 
 </li>
 <li>
-Environment variables
+环境变量
 
 </li>
 <li>
-<code>application.properties</code>, if on the classpath.
+<code>application.properties</code>, 如果存在于类路径
 
 </li>
 </ol>
-<p>The priority (most to least important) means that if a given config key appears in
-more than one source, the value assigned in a more important source overrules the
-value from a less important source.</p>
+<p>优先级（从最重要到最不重要）意味着如果给定的配置键出现在多个源中，
+则在更重要的源中分配的值会否决来自不太重要的源的值。</p>
 
-<p>Verify this by noting that the program has displayed your actual <code>java.home</code> which
-Java set as a system property, not the value set in the example <code>application.properties</code>
-file.</p>
+<p>通过注意程序已经显示您的实际 <code>java.home</code> 来验证这一点，
+Java将其设置为系统属性，而不是示例 <code>application.properties</code> 文件中设置的值。</p>
 
 </div>
 
-<h5 >Built-in Support for Config Formats</h5>
+<h5 >内置支持配置格式</h5>
 <div class="section">
-<p>If you add additional Helidon config maven artifacts to your dependencies, then the
-config system can read formats other than Java properties format and the default
-configuration will search for other <code>application</code> file types
-in the following order. Note that the default configuration <em>stops</em> once it finds
-one of the files below; it <em>does not</em> merge all such files it can find.</p>
+<p>如果向依赖项添加其他Helidon配置maven工件，
+则配置系统可以读取Java属性格式以外的格式，默认配置将按以下顺序搜索其他 <code>application</code> 文件类型。
+请注意，默认配置会在找到以下某个文件后停止;它不会合并它可以找到的所有这些文件。</p>
 
-<div class="block-title"><span>Default Config Files (most to least important)</span></div>
+<div class="block-title"><span>默认配置文件 (most to least important)</span></div>
 <div class="table__overflow elevation-1 ">
 <table class="datatable table">
 <colgroup>
@@ -294,60 +276,54 @@ href="https://json.org/">https://json.org/</a></td>
 </div>
 </div>
 
-<h2 >Next Steps</h2>
+<h2 >下一步</h2>
 <div class="section">
-<p>Although the default configuration is very simple to use, your
-application can take as much control as it needs over</p>
+<p>尽管默认配置使用起来非常简单，但您的应用程序可以根据需要进行尽可能多的控制</p>
 
 <ul class="ulist">
 <li>
-<p>loading configuration data,</p>
+<p>加载配置数据，</p>
 
 </li>
 <li>
-<p>accessing the data once loaded, and</p>
+<p>加载后访问数据，</p>
 
 </li>
 <li>
-<p>extending and modifying the behavior of the config system.</p>
+<p>并扩展和修改配置系统的行为。</p>
 
 </li>
 </ul>
-<p>You do this by:</p>
+<p>通过以下步骤:</p>
 
 <ul class="ulist">
 <li>
-<p>creating and invoking methods on a <code>Config.Builder</code> object to construct a <code>Config</code> instance</p>
-<p>Using a builder, the application can control everything about how the config
-system creates the resulting <code>Config</code> instance: config sources, parsers, polling strategy,
-filters, overrides, mappers, whether or not environment variables and Java
-system properties serve as config sources. The JavaDoc explains how to use the
-<a id=""
+<p>在 <code>Config.Builder</code> 对象上创建和调用方法以构造 <code>Config</code> 实例</p>
+<p>使用构建器，应用程序可以控制有关配置系统如何创建生成的Config实例的所有内容:
+配置源，解析器，轮询策略，过滤器，覆盖，映射器，环境变量和Java系统属性是否用作配置源。
+JavaDoc解释了如何使用<a id=""
 title=""
 target="_blank"
-href="./apidocs/index.html?io/helidon/config/Config.Builder.html"><code>Config.Builder</code></a>.</p>
-
-<p>or</p>
-
-</li>
-<li>
-<p>creating a <router-link :to="{path: '/config/06_advanced-configuration', hash: '#Config-Advanced-metaconfig'}">meta-configuration</router-link>
-file on the runtime classpath to control how the config system prepares the
-default configuration.</p>
+href="./apidocs/index.html?io/helidon/config/Config.Builder.html"><code>Config.Builder</code></a>。</p>
 
 </li>
 </ul>
-<p>Once created, the <code>Config</code> object provides many methods the application can use to
-retrieve config data as various Java types. See the <a id=""
+<p>.</p>
+
+<p>+
+或者
+* 在运行时类路径上创建<router-link :to="{path: '/config/06_advanced-configuration', hash: '#Config-Advanced-metaconfig'}">元配置</router-link>文件，以控制配置系统如何准备默认配置。</p>
+
+<p>创建后， <code>Config</code>  对象提供了许多方法，
+应用程序可以使用这些方法将配置数据检索为各种Java类型。有关完整的详细信息，
+请参阅 <a id=""
 title=""
 target="_blank"
-href="./apidocs/index.html?io/helidon/config/Config.html"><code>Config</code></a>
-JavaDoc for complete details.</p>
+href="./apidocs/index.html?io/helidon/config/Config.html"><code>Config</code></a> JavaDoc。</p>
 
-<p>The links in the following tables lead you to more information about various
-other config topics.</p>
+<p>下表中的链接将引导您获取有关各种其他配置主题的更多信息。</p>
 
-<div class="block-title"><span>Controlling How Config is Loaded</span></div>
+<div class="block-title"><span>控制如何加载配置</span></div>
 <div class="table__overflow elevation-1 ">
 <table class="datatable table">
 <colgroup>
@@ -386,7 +362,7 @@ other config topics.</p>
 </tbody>
 </table>
 </div>
-<div class="block-title"><span>Accessing Configuration Data</span></div>
+<div class="block-title"><span>访问配置数据</span></div>
 <div class="table__overflow elevation-1 ">
 <table class="datatable table">
 <colgroup>
@@ -411,7 +387,7 @@ other config topics.</p>
 </tbody>
 </table>
 </div>
-<div class="block-title"><span>Extending and Fine-tuning the Config System</span></div>
+<div class="block-title"><span>扩展和微调配置系统</span></div>
 <div class="table__overflow elevation-1 ">
 <table class="datatable table">
 <colgroup>
